@@ -1,12 +1,14 @@
-# Program to test rendering of LaTeX equation into a .png file
+import subprocess
+
+# Program to test rendering of LaTeX equation into a .svg file
 
 # Rendering equation
 
 test = r"$\dfrac{dy}{dx} = \dfrac{x^2}{30}$"
-n = "test-eq"
+n = "test-eq" + ".tex"
 
 template = open("template.tex")
-f = open(n + ".tex", "w")
+f = open(n, "w")
 line = ""
 
 while (not (r"\begin{document}" in line)):
@@ -21,3 +23,11 @@ for line in template:
 
 template.close()
 f.close()
+
+# Render .tex into .dvi
+
+subprocess.run(['latex', n])
+
+# Render .dvi into .svg
+
+subprocess.run(['dvisvgm', '-n', n])
