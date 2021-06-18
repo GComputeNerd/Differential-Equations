@@ -39,14 +39,15 @@ LEFT = Point(-1,0)
 RIGHT = Point(1,0)
 
 class Transform():
-    def __init__(self, i, j):
+    def __init__(self, i, j, ORIGIN = Point(0,0)):
         self.i = i
         self.j = j
+        self.ORIGIN = ORIGIN
 
     def __mul__(self, point):
         if (isinstance(point, Point)):
             return Point(point.x * self.i.x + point.y * self.j.x,
-                    point.x*self.i.y + point.y*self.j.y)
+                    point.x*self.i.y + point.y*self.j.y) + self.ORIGIN
 
 rot90 = Transform(Point(0, 1), Point(-1, 0))
 
@@ -418,7 +419,7 @@ class CoordinateGrid():
         self.cr.move_to(point.x, point.y)
         self.cr.select_font_face(font_face, slant, weight)
         self.cr.set_font_size(size)
-        self.cr.show_text(text)
+        self.cr.text_path(text)
 
     def arrow(self, point1, point2, arrow_height=20, arrow_angle=math.pi/8):
         point1 = self.coords(point1)
