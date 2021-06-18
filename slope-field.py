@@ -45,6 +45,7 @@ for y in range(-7, 8):
             cr.line_to(p2.x,p2.y)
             cr.stroke()
 
+# Plot some functions
 cr.set_line_width(0.8)
 cr.set_source_rgb(1,0.2,0.2)
 cg.PlotFunc(lambda x: (x**3)/90, -11, 11)
@@ -68,18 +69,15 @@ cr.fill_preserve()
 cr.set_source_rgb(0,0,0)
 cr.stroke()
 
+# Render The LaTeX
 eqn = r"\Large$\dfrac{dy}{dx} = \dfrac{x^2}{30}$"
-writeMathEq.renderMath(eqn, "diff")
 p1 = ct*cairofunctions.Point(6.5,6.5)
-eqn = cairo.ImageSurface.create_from_png("tex-files/diff.png")
+cg.WriteMath(eqn, p1)
 
-cr.set_source_surface(eqn, p1.x, p1.y)
-cr.get_source().set_filter(cairo.FILTER_NEAREST)
-cr.paint() 
-
+# Write Text
 cg.Write("Slope Field for", cairofunctions.Point(5.6, 7), size=17.5)
 cr.set_source_rgb(0,0,0)
 cr.fill()
 
-
+# Output End File
 ims.write_to_png("img.png")

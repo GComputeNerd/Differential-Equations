@@ -1,5 +1,7 @@
 import cairo
 import math
+from datetime import datetime
+import writeMathEq
 
 class Error(Exception):
     pass
@@ -420,6 +422,14 @@ class CoordinateGrid():
         self.cr.select_font_face(font_face, slant, weight)
         self.cr.set_font_size(size)
         self.cr.text_path(text)
+
+    def WriteMath(self, eqn, point):
+        name = datetime.now().strftime("eqn-%m%d%H%M%S%f")
+        writeMathEq.renderMath(eqn, name)
+        eqn = cairo.ImageSurface.create_from_png("tex-files/" + name + ".png")
+        self.cr.set_source_surface(eqn, point.x, point.y)
+        self.cr.get_source().set_filter(cairo.FILTER_NEAREST)
+        self.cr.paint()
 
     def arrow(self, point1, point2, arrow_height=20, arrow_angle=math.pi/8):
         point1 = self.coords(point1)
