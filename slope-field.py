@@ -71,7 +71,7 @@ cr.stroke()
 eqn = r"\Large$\dfrac{dy}{dx} = \dfrac{x^2}{30}$"
 writeMathEq.renderMath(eqn, "diff")
 p1 = ct*cairofunctions.Point(6.5,6.5)
-eqn = cairo.ImageSurface.create_from_png("diff.png")
+eqn = cairo.ImageSurface.create_from_png("tex-files/diff.png")
 
 cr.set_source_surface(eqn, p1.x, p1.y)
 cr.get_source().set_filter(cairo.FILTER_NEAREST)

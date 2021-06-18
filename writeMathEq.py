@@ -6,7 +6,7 @@ def renderMath(eqn, name):
     # Rendering equation
     
     template = open("template.tex")
-    f = open(name + ".tex", "w")
+    f = open("tex-files/" + name + ".tex", "w")
     line = ""
     
     while (not (r"\begin{document}" in line)):
@@ -23,8 +23,8 @@ def renderMath(eqn, name):
     
     # Render .tex into .dvi
     
-    subprocess.run(['latex', name + ".tex"])
+    subprocess.run(['latex', '-output-directory', 'tex-files', name + ".tex"])
     
     # Render .dvi into .svg
     
-    subprocess.run(['dvipng', '-bg', 'Transparent',  name + ".dvi", "-o", name + ".png"])
+    subprocess.run(['dvipng', '-bg', 'Transparent',  'tex-files/' + name + ".dvi", "-o", 'tex-files/' + name + ".png"])
