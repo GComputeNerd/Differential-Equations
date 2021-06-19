@@ -1,7 +1,7 @@
 import cairo
 import math
 from datetime import datetime
-import writeMathEq
+import graphing.writeMathEq as writeMathEq
 
 class Error(Exception):
     pass

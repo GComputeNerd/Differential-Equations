@@ -1,7 +1,6 @@
 import cairo
-import cairofunctions
+import graphing.cairofunctions as cairofunctions
 import math
-import writeMathEq
 
 w = 545
 h = 390
@@ -36,7 +35,7 @@ cr.set_source_rgb(0,0,1)
 for y in range(-7, 8):
     for x in range(-11,12):
         try:
-            m = x*x/30
+            m = -x/y
             cg.PlotFuncYLim(lambda a:m*(a-x) + y, x-0.25, x+0.25, y-0.25, y+0.25)
         except ZeroDivisionError:
             p1 = ct*cairofunctions.Point(x, y -0.25)
@@ -48,13 +47,20 @@ for y in range(-7, 8):
 # Plot some functions
 cr.set_line_width(0.8)
 cr.set_source_rgb(1,0.2,0.2)
-cg.PlotFunc(lambda x: (x**3)/90, -11, 11)
+cg.PlotParametric(lambda x: 5*math.cos(x),
+        lambda y: 5*math.sin(y),
+        0, 2*math.pi)
 
 cr.set_source_rgb(0.2,0.7,0.2)
-cg.PlotFunc(lambda x: (x**3)/90 + 1, -11, 11)
+cg.PlotParametric(lambda x: 3*math.cos(x),
+        lambda y: 3*math.sin(y),
+        0, 2*math.pi)
 
-cr.set_source_rgb(0.6,0.2,0.6)
-cg.PlotFunc(lambda x: (x**3)/90 -1, -11, 11)
+cr.set_source_rgb(0.2,0.2,0.6)
+cg.PlotParametric(lambda x: 7*math.cos(x),
+        lambda y: 7*math.sin(y),
+        0, 2*math.pi)
+
 
 # Box at the Corner
 p1 = ct*cairofunctions.Point(5,8)
@@ -70,7 +76,7 @@ cr.set_source_rgb(0,0,0)
 cr.stroke()
 
 # Render The LaTeX
-eqn = r"\Large$\dfrac{dy}{dx} = \dfrac{x^2}{30}$"
+eqn = r"\Large$\dfrac{dy}{dx} = \dfrac{-x}{y}$"
 p1 = ct*cairofunctions.Point(6.5,6.5)
 cg.WriteMath(eqn, p1)
 
