@@ -1,11 +1,12 @@
 import subprocess
+from graphing.data import * # Temporary solution to problem
 
 # Program to test rendering of LaTeX equation into a .svg file
 
 def renderMath(eqn, name):
     # Rendering equation
     
-    template = open("template.tex")
+    template = open(root + "template.tex")
     f = open("tex-files/" + name + ".tex", "w")
     line = ""
     
