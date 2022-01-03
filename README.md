@@ -1,19 +1,5 @@
 # Differential Equation Visualizer
 
-This uses another program I made called graphing, to make visualizations of differential equations.
+![example image](img.png)
 
-Note:-
-
-In graphing/data.py , A line must be appended of the form
-
-root = <path>
-
-Where <path> is the absolute path to the graphing directory
-
-Example :-
-
-```python
-# graphing/data.py
-
-root = '/home/user/Downloads/differential-equations/graphing/'
-```
+This uses another program I made called [graphing](https://github.com/GComputeNerd/Graphing-Calc), to make visualizations of differential equations.
