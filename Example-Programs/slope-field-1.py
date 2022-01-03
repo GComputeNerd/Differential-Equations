@@ -1,7 +1,6 @@
 import cairo
-import cairofunctions
+import graphing.cairofunctions as cairofunctions
 import math
-import writeMathEq
 
 w = 545
 h = 390
